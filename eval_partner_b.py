@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
 
 pipe = Pipeline([
     ('scaler', StandardScaler()),
@@ -15,3 +16,6 @@ pipe = Pipeline([
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 pipe.fit(X_train, y_train)
 pipe.predict(X_test)
+
+accuracy_score(y_test, pipe.predict(X_test))
+print(f"Accuracy: {accuracy_score(y_test, pipe.predict(X_test))}")
