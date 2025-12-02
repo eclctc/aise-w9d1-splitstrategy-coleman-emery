@@ -10,7 +10,7 @@ from sklearn.metrics import accuracy_score
 import numpy as np
 
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y, random_state=42)
 
 # Create a pipeline with scaling and logistic regression for better performance on data set
 pipe = Pipeline([
