@@ -11,7 +11,7 @@
 - **Key Characteristic**: Balanced - Only three wine types
 
 ## Why We Chose This Dataset
-[1-2 sentences about what makes this dataset interesting for evaluation practice]
+We chose this particular data set because it was covered in class already. Therefore it was easy to go back and reference our notes without too much confusion when implementing the cross validation and train/test/split/fit/predict functionality.
 
 ## Agreed-Upon Metric
 - **Metric**: Accuracy
