@@ -1,3 +1,10 @@
+"""
+Partner B: Stratified/Time-Aware + 5-Fold Specialized CV
+Author: Brett Coleman
+Dataset: Wine Quality (Multiclass)
+Metric: Accuracy
+"""
+
 from sklearn.datasets import load_wine
 data = load_wine(as_frame=True)
 X, y = data.data, data.target
@@ -20,13 +27,14 @@ pipe = Pipeline([
 
 # Add cross-validation for StratifiedKFold
 cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
-cv_scores = cross_val_score(pipe, X_train, y_train,
-                            cv=cv, scoring='accuracy')
+cv_scores = cross_val_score(pipe, X_train, y_train, cv=cv, scoring='accuracy')
+
 # Fit the data
 pipe.fit(X_train, y_train)
 
 # Predict on the test set
-pipe.predict(X_test)
+y_pred = pipe.predict(X_test)
+print(f"Predictions on test set: {y_pred}")
 
 # Metric evaluation on cross validation and test set
 print(f"Cross-validation accuracy scores: {cv_scores}")
