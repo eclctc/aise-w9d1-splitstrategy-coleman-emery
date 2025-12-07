@@ -15,7 +15,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 import numpy as np
-
+import os
+import pandas as pd
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y, random_state=42)
 
@@ -44,3 +45,22 @@ print(f"Standard deviation cross-validation accuracy: {np.std(cv_scores)}")
 # Test set accuracy
 accuracy_score(y_test, pipe.predict(X_test))
 print(f"Accuracy: {accuracy_score(y_test, pipe.predict(X_test))}")
+
+# Save scoores to comparison file - Append to existing file or create new one!
+file = "comparison.csv"
+
+# Check if file exists or is empty to write header
+write_header = not os.path.exists(file) or os.path.getsize(file) == 0
+
+# Build one row of data
+df = pd.DataFrame([{
+    "partner": "Partner B",
+    "mean_cv_accuracy": np.mean(cv_scores),
+    "std_cv_accuracy": np.std(cv_scores),
+    "test_accuracy": accuracy_score(y_test, pipe.predict(X_test))
+}])
+
+# Append to CSV file
+df.to_csv(file, mode="a", header=write_header, index=False)
+
+    
