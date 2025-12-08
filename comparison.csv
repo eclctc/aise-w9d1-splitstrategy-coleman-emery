@@ -1,2 +1,2 @@
-partner,mean_cv_accuracy,std_cv_accuracy,test_accuracy
-Partner B,0.9790640394088669,0.027713464392187602,0.9722222222222222
+strategy,mean_cv_accuracy,std_cv_accuracy,test_accuracy
+stratified,0.9791,0.0277,0.9722

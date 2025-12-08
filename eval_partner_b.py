@@ -38,13 +38,13 @@ y_pred = pipe.predict(X_test)
 print(f"Predictions on test set: {y_pred}")
 
 # Metric evaluation on cross validation and test set
-print(f"Cross-validation accuracy scores: {cv_scores}")
-print(f"Mean cross-validation accuracy: {np.mean(cv_scores)}")
-print(f"Standard deviation cross-validation accuracy: {np.std(cv_scores)}")
+print(f"Cross-validation accuracy scores: {cv_scores.round(4)}")
+print(f"Mean cross-validation accuracy: {round(np.mean(cv_scores)),4}")
+print(f"Standard deviation cross-validation accuracy: {round(np.std(cv_scores),4)}")
 
 # Test set accuracy
 accuracy_score(y_test, pipe.predict(X_test))
-print(f"Accuracy: {accuracy_score(y_test, pipe.predict(X_test))}")
+print(f"Accuracy: {round(accuracy_score(y_test, pipe.predict(X_test)),4)}")
 
 # Save scoores to comparison file - Append to existing file or create new one!
 file = "comparison.csv"
@@ -54,10 +54,10 @@ write_header = not os.path.exists(file) or os.path.getsize(file) == 0
 
 # Build one row of data
 df = pd.DataFrame([{
-    "partner": "Partner B",
-    "mean_cv_accuracy": np.mean(cv_scores),
-    "std_cv_accuracy": np.std(cv_scores),
-    "test_accuracy": accuracy_score(y_test, pipe.predict(X_test))
+    "strategy": "stratified",
+    "mean_cv_accuracy": round(np.mean(cv_scores),4),
+    "std_cv_accuracy": round(np.std(cv_scores),4),
+    "test_accuracy": round(accuracy_score(y_test, pipe.predict(X_test)),4)
 }])
 
 # Append to CSV file
