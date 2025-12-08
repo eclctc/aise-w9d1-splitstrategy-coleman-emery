@@ -18,8 +18,8 @@ We chose this particular data set because it was covered in class already. There
 - **Why this metric**: We wanted to see how the model’s cross-validated training scores compared to its final prediction results on the train/test split.
 
 ## Loading Code
-from sklearn.datasets import load_wine
-data = load_wine(as_frame=True)
+from sklearn.datasets import load_wine  
+data = load_wine(as_frame=True)  
 X, y = data.data, data.target
 
 ## Package Versions
